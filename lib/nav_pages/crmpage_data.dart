@@ -132,15 +132,32 @@ class _CrmpageDataState extends State<CrmpageData> {
               child: ListTile(
             leading: CircleAvatar(child: Text(customerData[index]["roomNumber"])),
             title: Text(customerData[index]["guestName"]?? "Default"),
-            subtitle: Text(customerData[index]["type"]),
-                trailing: Column(
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //Text(customerData[index]["type"]),
+                Text(customerData[index]["type"]),
+                Row(
                   children: [
-                    Text(customerData[index]["type"]),
+                    //SizedBox(height: 11,),
                     Text("₹ ${customerData[index]["price"].toString()}"),
-                    Text(customerData[index]["floor"]),
+                    SizedBox(height: 25,),
+                    Text(", ${customerData[index]["floor"]}"),
                   ],
                 ),
 
+
+              ],
+            ),
+                trailing: Column(
+                  children: [
+                    Text("Recording: ${customerData[index]["lastCall"]}"),
+                    IconButton(onPressed: (){
+                      // Recording play karne ka logic
+                      SnackBar(content: Text("Playing recording of ${customerData[index]["guestName"]}..."));
+                    }, icon: Icon(Icons.play_circle_fill, size: 15,))
+                  ],
+                ),
 
           ));
           }),
