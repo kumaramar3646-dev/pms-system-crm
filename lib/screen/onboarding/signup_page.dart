@@ -13,7 +13,6 @@ class _SignupPageState extends State<SignupPage> {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,12 +89,23 @@ class _SignupPageState extends State<SignupPage> {
                           onPressed: ()async{
                             if(formKey.currentState!.validate()){
                               var prefs = await SharedPreferences.getInstance();
-                              prefs.setString("userId", userIdController.text);
-                              prefs.setString("password", passwordController.text);
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> LoginPage()));
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text("Account created successfully.", ), backgroundColor: Colors.green,),
-                              );
+                              String? existingUser = prefs.getString("userId");
+                              if(existingUser == userIdController.text){
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text("User already exists."), backgroundColor: Colors.red,),
+                                );
+                              }else {
+                                prefs.setString("userId", userIdController.text);
+                                prefs.setString("password", passwordController.text);
+                                Navigator.pushReplacement(context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginPage()));
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text(
+                                    "Account created successfully.",),
+                                    backgroundColor: Colors.green,),
+                                );
+                              }
                             }
                           }, child: Text("Sign Up"))),
                   SizedBox(height: 21,),

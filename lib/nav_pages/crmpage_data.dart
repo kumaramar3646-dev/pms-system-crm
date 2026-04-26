@@ -145,17 +145,17 @@ class _CrmpageDataState extends State<CrmpageData> {
                     Text(", ${customerData[index]["floor"]}"),
                   ],
                 ),
-
-
               ],
             ),
                 trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Text("Recording: ${customerData[index]["lastCall"]}"),
-                    IconButton(onPressed: (){
+                    /*IconButton(onPressed: (){
                       // Recording play karne ka logic
                       SnackBar(content: Text("Playing recording of ${customerData[index]["guestName"]}..."));
-                    }, icon: Icon(Icons.play_circle_fill, size: 15,))
+                    }, icon: Icon(Icons.play_circle_fill, size: 15,)),*/
                   ],
                 ),
 

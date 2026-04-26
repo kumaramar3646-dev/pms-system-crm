@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -128,8 +129,8 @@ class _HomePageState extends State<HomePage> {
       body: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10
+              crossAxisSpacing: 11,
+              mainAxisSpacing: 11
           ),
           itemCount: roomsData.length,
           itemBuilder: (context, index){
@@ -158,7 +159,6 @@ class _HomePageState extends State<HomePage> {
                           context: context,
                           //isScrollControlled: true,
                           builder: (context){
-
                             return Container(
                               padding: EdgeInsets.all(11),
                               width: double.infinity,
@@ -188,7 +188,7 @@ class _HomePageState extends State<HomePage> {
                                         setState(() {});
                                         Navigator.pop(context);
                                         ScaffoldMessenger.of(context).showSnackBar(
-                                          SnackBar(content: Text("Room booked successfully!", ), backgroundColor: Colors.green,),
+                                          SnackBar(content: Text("Room booked successfully!", ), backgroundColor: Colors.yellow,),
                                         );
                                       }, child: Text("Confirm Booking"),),
                                       SizedBox(width: 11,),

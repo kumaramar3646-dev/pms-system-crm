@@ -11,7 +11,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   var userIdController = TextEditingController();
-
   var passwordController = TextEditingController();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
